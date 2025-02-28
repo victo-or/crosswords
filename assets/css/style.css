@@ -1,5 +1,5 @@
 body {
-    font-family: 'Courier New', Courier, monospace, sans-serif;
+    font-family: monospace, sans-serif;
     margin: .5rem;
     padding: .5rem;
     display: flex;
@@ -72,10 +72,26 @@ footer {
 
 .hidden {
     color: transparent;
+    cursor: pointer;
 }
 
 .line-t {
     text-decoration: line-through;
+}
+
+.bleeding {
+    font-weight: 900;
+    text-shadow: 
+    0 0 5px rgb(195, 255, 0), 
+    0 0 10px rgb(195, 255, 0), 
+    0 0 15px rgb(195, 255, 0), 
+    0 0 20px rgb(195, 255, 0), 
+    0 0 25px rgb(195, 255, 0), 
+    0 0 30px rgb(195, 255, 0), 
+    0 0 35px rgb(195, 255, 0);
+    /* text-shadow: 0 0 5px rgb(195, 255, 0), 0 0 10px rgb(195, 255, 0), 0 0 15px rgb(195, 255, 0), 0 0 20px rgb(195, 255, 0); */
+    transition: font-weight 1s ease-out;
+    transition: text-shadow 1s ease-out;
 }
 
 .marquee {

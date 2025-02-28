@@ -7,8 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
         cell.addEventListener('click', function() {
             // Remove the 'hidden' class from the clicked cell
             cell.classList.remove('hidden');
-            // Check if all cells for the word are revealed
-            checkWordCompletion(cell.getAttribute('data-word'));
+            // Get all classes that start with 'word-'
+            const wordClasses = Array.from(cell.classList).filter(cls => cls.startsWith('word-'));
+            // Extract the word names from the classes
+            const words = wordClasses.map(cls => cls.replace('word-', ''));
+            // Check if all cells for each word are revealed
+            words.forEach(word => checkWordCompletion(word));
         });
     });
 
@@ -18,11 +22,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add a click event listener to each hint
     hints.forEach(hint => {
         hint.addEventListener('click', function() {
-            // Get the data-word attribute of the clicked hint
-            const word = hint.getAttribute('data-word');
+            // Get the word class of the clicked hint
+            const wordClass = Array.from(hint.classList).find(cls => cls.startsWith('word-'));
+            const word = wordClass.replace('word-', '');
 
-            // Select all letter-cells with the same data-word attribute
-            const letterCells = document.querySelectorAll(`.letter-cell[data-word="${word}"]`);
+            // Select all letter-cells with the corresponding word class
+            const letterCells = document.querySelectorAll(`.letter-cell.${wordClass}`);
 
             // Remove the 'hidden' class from each matching letter-cell
             letterCells.forEach(cell => {
@@ -31,18 +36,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Add the 'line-t' class to the clicked hint
             hint.classList.add('line-t');
+
+            // Add the 'bleeding' class to the hint and letter-cells
+            hint.classList.add('bleeding');
+            letterCells.forEach(cell => {
+                cell.classList.add('bleeding');
+            });
+
+            // Remove the 'bleeding' class after 1 second
+            setTimeout(() => {
+                hint.classList.remove('bleeding');
+                letterCells.forEach(cell => {
+                    cell.classList.remove('bleeding');
+                });
+            }, 1000);
         });
     });
 
     // Function to check if all cells for a word are revealed
     function checkWordCompletion(word) {
         if (!word) return;
-        const letterCells = document.querySelectorAll(`.letter-cell[data-word="${word}"]`);
+        const letterCells = document.querySelectorAll(`.letter-cell.word-${word}`);
         const allRevealed = Array.from(letterCells).every(cell => !cell.classList.contains('hidden'));
         if (allRevealed) {
-            const hint = document.querySelector(`.hint[data-word="${word}"]`);
+            const hint = document.querySelector(`.hint.word-${word}`);
             if (hint) {
                 hint.classList.add('line-t');
+
+                // Add the 'bleeding' class to the hint and letter-cells
+                hint.classList.add('bleeding');
+                letterCells.forEach(cell => {
+                    cell.classList.add('bleeding');
+                });
+
+                // Remove the 'bleeding' class after 1 second
+                setTimeout(() => {
+                    hint.classList.remove('bleeding');
+                    letterCells.forEach(cell => {
+                        cell.classList.remove('bleeding');
+                    });
+                }, 1000);
             }
         }
     }
