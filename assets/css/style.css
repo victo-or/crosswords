@@ -24,17 +24,28 @@ header {
 
 main {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
     gap: 1rem;
     
-    /* justify-content: center; */
-    justify-content: space-evenly;
+    justify-content: center;
+    /* align-items: center; */
     padding: .75rem;
 }
 
 footer {
     font-size: .75rem;
     text-align: center;
+}
+
+.crossword-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 .crossword-grid {
@@ -66,13 +77,43 @@ footer {
     color: #666;
 }
 
+.crossword-hint {
+    max-width: 500px;
+}
+
 .hint {
     cursor: pointer;
+}
+
+.crossword-answers-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    border-top: 2px dotted #000;
+    padding-top: 1rem;
+}
+
+.crossword-answers {
+    max-width: 650px;
+    /* overflow-y: auto; */
+}
+
+.answers-intro {
+    font-size: .75rem;
+    font-style: italic;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .hidden {
     color: transparent;
     cursor: pointer;
+}
+
+.none {
+    display: none;
 }
 
 .line-t {

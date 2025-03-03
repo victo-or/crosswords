@@ -50,6 +50,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     cell.classList.remove('bleeding');
                 });
             }, 1000);
+
+            // Reveal the details element if it exists
+            const details = document.querySelector(`.crossword-answers details.word-${word}`);
+            if (details) {
+                details.classList.remove('none');
+                details.open = true;
+            }
         });
     });
 
@@ -76,6 +83,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         cell.classList.remove('bleeding');
                     });
                 }, 1000);
+
+                // Reveal the details element if it exists
+                const details = document.querySelector(`.crossword-answers details.word-${word}`);
+                if (details) {
+                    details.classList.remove('none');
+                    details.open = true;
+                }
             }
         }
     }
