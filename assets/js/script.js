@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 letterCells.forEach(cell => {
                     cell.classList.remove('bleeding');
                 });
-            }, 1000);
+            }, 300);
 
             // Reveal the details element if it exists
             const details = document.querySelector(`.crossword-answers details.word-${word}`);
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     letterCells.forEach(cell => {
                         cell.classList.remove('bleeding');
                     });
-                }, 1000);
+                }, 300);
 
                 // Reveal the details element if it exists
                 const details = document.querySelector(`.crossword-answers details.word-${word}`);
