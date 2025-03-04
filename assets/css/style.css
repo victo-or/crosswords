@@ -1,10 +1,7 @@
 body {
-    font-family: monospace, sans-serif;
-    margin: .5rem;
-    padding: .5rem;
+    font-family: 'Times New Roman', serif;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     min-height: 100vh;
     background-color: #f0f0f0;
     box-sizing: border-box;
@@ -12,12 +9,7 @@ body {
     padding: 0;
 }
 
-header {
-    text-align: center;
-    padding-bottom: 1rem;
-}
-
-/* Spacers between Header-Main and Main-Footer */
+/* Spacers Main-Footer */
 .spacer {
     flex: 1;
 }
@@ -25,11 +17,8 @@ header {
 main {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     gap: 1rem;
-    
     justify-content: center;
-    /* align-items: center; */
     padding: .75rem;
 }
 
@@ -39,13 +28,13 @@ footer {
 }
 
 .crossword-container {
+    font-family: monospace;
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: center; */
     justify-content: space-evenly;
     align-items: center;
     gap: 1rem;
-    padding: 1rem;
+    padding: .5rem;
 }
 
 .crossword-grid {
@@ -81,6 +70,10 @@ footer {
     max-width: 500px;
 }
 
+.crossword-hint li {
+    margin-bottom: .5rem;
+}
+
 .hint {
     cursor: pointer;
 }
@@ -89,14 +82,13 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: .75rem;
     border-top: 2px dotted #000;
-    padding-top: 1rem;
+    padding: .5rem;
 }
 
 .crossword-answers {
     max-width: 650px;
-    /* overflow-y: auto; */
 }
 
 .answers-intro {
@@ -121,7 +113,7 @@ footer {
 }
 
 .bleeding {
-    font-weight: 900;
+    font-weight: bolder;
     text-shadow: 
     0 0 5px rgb(195, 255, 0), 
     0 0 10px rgb(195, 255, 0), 
@@ -130,32 +122,45 @@ footer {
     0 0 25px rgb(195, 255, 0), 
     0 0 30px rgb(195, 255, 0), 
     0 0 35px rgb(195, 255, 0);
-    /* text-shadow: 0 0 5px rgb(195, 255, 0), 0 0 10px rgb(195, 255, 0), 0 0 15px rgb(195, 255, 0), 0 0 20px rgb(195, 255, 0); */
     transition: font-weight 300ms ease-out;
     transition: text-shadow 300ms ease-out;
 }
 
 .marquee {
-    font-size: 2vw;
+    font-size: clamp(16px, 3vw, 28px);
+    height: clamp(20px, 3.25vw, 32px);
     color: #fff;
-    font-family: 'Courier New', Courier, monospace;
-    height: 2.5vw;
+    text-transform: uppercase;
+    font-style: italic;
     overflow: hidden;
-    background-color: #0007d1;
+    text-shadow: 0 0 5px blue, 0 0 5px blue, 0 0 5px blue, 0 0 5px blue;
     position: relative;
+    background: linear-gradient(to bottom, rgba(0, 0, 255, 0.65), rgba(0, 29, 220, 0.234) 50%, rgba(0, 0, 255, 0.65));
+
 }
 .marquee>span {
     display: block;
-    width: 200%;
+    width: 270%;
     position: absolute; 
     overflow: hidden;
     animation: marquee 12s linear infinite;
+    transition: width 0.5s ease;
+    will-change: transform;
 }
+
 .marquee > span > span {
     float: left;
     width: 50%;
 }
 @keyframes marquee {
-    0% { left: 0; }
-    100% { left: -100%; }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Desktop screen size */
+@media screen and (min-width: 1024px) {
+    .marquee > span {
+        width: 200%;
+        animation: marquee 20s linear infinite;
+    }
 }
