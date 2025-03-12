@@ -51,6 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }, 300);
 
+            // Close all other details elements and add the 'none' class
+            const allDetails = document.querySelectorAll('.crossword-answers details');
+            allDetails.forEach(detail => {
+                if (detail !== document.querySelector(`.crossword-answers details.word-${word}`)) {
+                    detail.open = false;
+                }
+            });
+
             // Reveal the details element if it exists
             const details = document.querySelector(`.crossword-answers details.word-${word}`);
             if (details) {
@@ -83,6 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         cell.classList.remove('bleeding');
                     });
                 }, 300);
+
+                // Close all other details elements and add the 'none' class
+                const allDetails = document.querySelectorAll('.crossword-answers details');
+                allDetails.forEach(detail => {
+                    if (detail !== document.querySelector(`.crossword-answers details.word-${word}`)) {
+                        detail.open = false;
+                    }
+                });
 
                 // Reveal the details element if it exists
                 const details = document.querySelector(`.crossword-answers details.word-${word}`);

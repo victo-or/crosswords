@@ -1,5 +1,5 @@
 body {
-    font-family: 'Times New Roman', serif;
+    font-family: monospace;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
